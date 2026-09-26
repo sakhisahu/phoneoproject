@@ -1,0 +1,191 @@
+/* PhoneHub Floating Widget */
+.phonehub {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: Arial, sans-serif;
+}
+
+.phonehub-toggle {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0c9b8a 0%, #0d7f73 100%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.25s ease;
+}
+
+.phonehub-toggle:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.phonehub-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 2px;
+}
+
+.phonehub-icon {
+  font-size: 19px;
+  color: white;
+  line-height: 1;
+}
+
+.phonehub-content {
+  width: 290px;
+  background: #ffffff;
+  border: 1px solid #dfe9eb;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.18);
+  overflow: hidden;
+  margin-bottom: 12px;
+  animation: phonehubFadeIn 0.25s ease;
+}
+
+@keyframes phonehubFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.phonehub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #0ea58f 0%, #0d7f73 100%);
+  color: white;
+}
+
+.phonehub-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.phonehub-header-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  padding: 2px;
+}
+
+.phonehub-close {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.phonehub-body {
+  padding: 16px;
+}
+
+.phonehub-contact,
+.phonehub-links {
+  margin-bottom: 16px;
+}
+
+.phonehub-contact h4,
+.phonehub-links h4 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.contact-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #ebfffb;
+  font-size: 16px;
+}
+
+.contact-label {
+  margin: 0 0 2px;
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contact-item a,
+.contact-item p,
+.phonehub-links a {
+  margin: 0;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.phonehub-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phonehub-links a {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.phonehub-cta {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  color: white;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .phonehub {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .phonehub-toggle {
+    width: 58px;
+    height: 58px;
+  }
+
+  .phonehub-content {
+    width: min(82vw, 290px);
+  }
+}
