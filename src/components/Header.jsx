@@ -1,44 +1,175 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/components.css';
-
-function PhoneHubLogo() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect width="36" height="36" rx="9" fill="url(#phg-header)" />
-      <rect x="12" y="7" width="12" height="22" rx="2.5" fill="#ffffff" />
-      <rect x="14" y="10" width="8" height="12" rx="1" fill="url(#phg-header)" opacity="0.22" />
-      <circle cx="18" cy="25.5" r="1.3" fill="url(#phg-header)" />
-      <defs>
-        <linearGradient id="phg-header" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#10b981" />
-          <stop offset="1" stopColor="#0ea5e9" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "../styles/components.css";
 
 export default function Header() {
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+
+    return location.pathname === path || location.pathname.startsWith(`${path}/`);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
-    <header className="header">
+    <header className="site-header">
       <div className="header-container">
-        <Link to="/" className="logo">
-          <PhoneHubLogo />
-          <span>PhoneHub</span>
+        {/* =========================
+            LOGO
+        ========================= */}
+        <Link
+          to="/"
+          className="site-logo"
+          onClick={closeMenu}
+          aria-label="PhoneHub Home"
+        >
+          <span className="site-logo-mark">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect
+                x="8"
+                y="4"
+                width="32"
+                height="40"
+                rx="7"
+                fill="currentColor"
+              />
+
+              <rect
+                x="13"
+                y="9"
+                width="22"
+                height="27"
+                rx="3"
+                fill="white"
+              />
+
+              <rect
+                x="16"
+                y="12"
+                width="16"
+                height="20"
+                rx="2"
+                fill="#E7A36E"
+              />
+
+              <circle
+                cx="24"
+                cy="39"
+                r="2"
+                fill="white"
+              />
+
+              <path
+                d="M24 16L25.8 20.1L30.2 20.6L26.9 23.5L27.8 27.8L24 25.6L20.2 27.8L21.1 23.5L17.8 20.6L22.2 20.1L24 16Z"
+                fill="#171513"
+              />
+            </svg>
+          </span>
+
+          <span className="site-logo-text">
+            <strong>PhoneHub</strong>
+            <small>by Phoneo</small>
+          </span>
         </Link>
 
-        <nav className="nav-menu">
-          <Link to="/">Home</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/compare">Compare</Link>
-          <Link to="/pricing">Pricing</Link>
+        {/* =========================
+            DESKTOP NAVIGATION
+        ========================= */}
+        <nav
+          className={`main-navigation ${
+            menuOpen ? "navigation-open" : ""
+          }`}
+          aria-label="Main navigation"
+        >
+          <Link
+            to="/"
+            className={`nav-link ${isActive("/") ? "active" : ""}`}
+            onClick={closeMenu}
+          >
+            <span>Home</span>
+          </Link>
+
+          <Link
+            to="/blogs"
+            className={`nav-link ${isActive("/blogs") ? "active" : ""}`}
+            onClick={closeMenu}
+          >
+            <span>Blog</span>
+          </Link>
+
+          <Link
+            to="/compare"
+            className={`nav-link ${
+              isActive("/compare") ? "active" : ""
+            }`}
+            onClick={closeMenu}
+          >
+            <span>Compare</span>
+          </Link>
+
+          <Link
+            to="/pricing"
+            className={`nav-link ${
+              isActive("/pricing") ? "active" : ""
+            }`}
+            onClick={closeMenu}
+          >
+            <span>Pricing</span>
+          </Link>
         </nav>
 
-        <div className="header-cta">
-          <button className="btn btn-secondary">Ask for Demo</button>
-          <button className="btn btn-primary">Start Free Trial</button>
+        {/* =========================
+            HEADER ACTIONS
+        ========================= */}
+        <div className="header-actions">
+          <Link
+            to="/blogs"
+            className="header-demo-btn"
+            onClick={closeMenu}
+          >
+            Ask for Demo
+          </Link>
+
+          <Link
+            to="/pricing"
+            className="header-start-btn"
+            onClick={closeMenu}
+          >
+            Start Free Trial
+            <span className="header-btn-arrow">↗</span>
+          </Link>
         </div>
+
+        {/* =========================
+            MOBILE MENU BUTTON
+        ========================= */}
+        <button
+          type="button"
+          className={`mobile-menu-button ${
+            menuOpen ? "menu-open" : ""
+          }`}
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
   );

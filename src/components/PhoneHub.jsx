@@ -10,26 +10,34 @@ export default function PhoneHub() {
 
   return (
     <div className={`phonehub ${isExpanded ? 'expanded' : 'collapsed'}`}>
-      {/* PhoneHub Toggle Button */}
-      <button 
-        className="phonehub-toggle" 
+      <button
+        type="button"
+        className="phonehub-toggle"
         onClick={togglePhoneHub}
         aria-label="Toggle PhoneHub"
       >
-        <img src="/assets/logos/phoneo-logo.png" alt="Phoneo Hub" className="phonehub-logo" />
+        <img
+          src="/assets/logos/phoneo-logo.png"
+          alt="Phoneo Hub"
+          className="phonehub-logo"
+        />
         <span className="phonehub-icon">📞</span>
       </button>
 
-      {/* PhoneHub Content */}
       {isExpanded && (
         <div className="phonehub-content">
           <div className="phonehub-header">
             <h3>
-              <img src="/assets/logos/phoneo-logo.png" alt="Phoneo" className="phonehub-header-logo" />
+              <img
+                src="/assets/logos/phoneo-logo.png"
+                alt="Phoneo"
+                className="phonehub-header-logo"
+              />
               Phoneo Hub
             </h3>
-            <button 
-              className="phonehub-close" 
+            <button
+              type="button"
+              className="phonehub-close"
               onClick={togglePhoneHub}
               aria-label="Close PhoneHub"
             >
@@ -38,10 +46,9 @@ export default function PhoneHub() {
           </div>
 
           <div className="phonehub-body">
-            {/* Contact Details */}
             <div className="phonehub-contact">
               <h4>Get in Touch</h4>
-              
+
               <div className="contact-item">
                 <span className="contact-icon">📞</span>
                 <div>
@@ -67,7 +74,6 @@ export default function PhoneHub() {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div className="phonehub-links">
               <h4>Quick Links</h4>
               <a href="#features">Features</a>
@@ -76,8 +82,9 @@ export default function PhoneHub() {
               <a href="#support">Support</a>
             </div>
 
-            {/* CTA Button */}
-            <button className="phonehub-cta">Start Free Trial</button>
+            <button type="button" className="phonehub-cta">
+              Start Free Trial
+            </button>
           </div>
         </div>
       )}

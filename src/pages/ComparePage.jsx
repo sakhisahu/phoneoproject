@@ -1,142 +1,244 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { comparisons } from '../data/compareData';
-import '../styles/compare.css';
+import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import "../styles/compare.css";
+
+import comparisons from "../data/compareData";
 
 export default function ComparePage() {
-  const [selectedComparison, setSelectedComparison] = useState(comparisons[0]);
+  const [search, setSearch] = useState("");
+
+  const filteredComparisons = useMemo(() => {
+    const query = search.trim().toLowerCase();
+
+    if (!query) {
+      return comparisons;
+    }
+
+    return comparisons.filter((item) => {
+      return (
+        item.title?.toLowerCase().includes(query) ||
+        item.productA?.toLowerCase().includes(query) ||
+        item.productB?.toLowerCase().includes(query) ||
+        item.category?.toLowerCase().includes(query)
+      );
+    });
+  }, [search]);
 
   return (
-    <div className="compare-page">
-      <div className="compare-hero">
-        <h1>Compare Phoneo With Other Software</h1>
-        <p>See why mobile shop owners choose Phoneo over alternatives</p>
-      </div>
+    <main className="compare-page">
+      {/* =====================================================
+          HERO
+      ===================================================== */}
 
-      <div className="compare-container">
-        {/* Comparison Selector */}
-        <div className="comparison-selector">
-          <h2>Choose Comparison</h2>
-          <div className="comparison-options">
-            {comparisons.map((comp) => (
-              <button
-                key={comp.id}
-                className={`comparison-option ${selectedComparison.id === comp.id ? 'active' : ''}`}
-                onClick={() => setSelectedComparison(comp)}
-              >
-                <span className="product-a">Phoneo</span>
-                <span className="vs">vs</span>
-                <span className="product-b">{comp.productB}</span>
-              </button>
-            ))}
+      <section className="compare-hero">
+        <div className="compare-container">
+          <div className="compare-hero-inner">
+            <div className="compare-hero-copy">
+              <div className="compare-eyebrow">
+                <span className="compare-eyebrow-dot"></span>
+                PhoneHub Comparisons
+              </div>
+
+              <h1>
+                Compare the tools
+                <br />
+                <span>before you choose.</span>
+              </h1>
+
+              <p>
+                Compare PhoneHub with popular billing, accounting, POS and
+                business management software. Understand the important
+                differences in a simple and practical way.
+              </p>
+            </div>
+
+            <div className="compare-search-box">
+              <span className="compare-search-icon">⌕</span>
+
+              <input
+                type="text"
+                placeholder="Search software or comparison..."
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+
+              {search && (
+                <button
+                  type="button"
+                  className="compare-search-clear"
+                  onClick={() => setSearch("")}
+                  aria-label="Clear search"
+                >
+                  ×
+                </button>
+              )}
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Detailed Comparison */}
-        <div className="comparison-detail">
-          <div className="comparison-intro">
-            <h2>{selectedComparison.title}</h2>
-            <p>{selectedComparison.introduction}</p>
-          </div>
+      {/* =====================================================
+          COMPARISON LIST
+      ===================================================== */}
 
-          {/* Comparison Table */}
-          <div className="comparison-tables">
-            {selectedComparison.categories.map((category) => (
-              <div key={category.id} className="comparison-section">
-                <div className="section-header">
-                  <span className="icon">{category.icon}</span>
-                  <h3>{category.name}</h3>
-                </div>
-
-                <table className="comparison-table">
-                  <thead>
-                    <tr>
-                      <th>Feature</th>
-                      <th>Phoneo</th>
-                      <th>{selectedComparison.productB}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {category.features.map((feature) => (
-                      <tr key={feature.name}>
-                        <td className="feature-name">{feature.name}</td>
-                        <td className={`feature-value ${feature.advantage === 'phoneo' ? 'winner' : ''}`}>
-                          {feature.phoneo}
-                        </td>
-                        <td className="feature-value">
-                          {feature[selectedComparison.productB.toLowerCase().replace(/\s+/g, '')] || 
-                           feature.vyapar || 
-                           feature.busy || 
-                           feature.tally}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+      <section className="compare-selection-section">
+        <div className="compare-container">
+          <div className="compare-selection-heading">
+            <div className="compare-heading-left">
+              <div className="compare-section-kicker">
+                <span></span>
+                Explore comparisons
               </div>
-            ))}
-          </div>
 
-          {/* Verdict Section */}
-          <div className="verdict-container">
-            <div className="verdict-content">
-              <h2>Our Verdict</h2>
-              <p className="verdict-text">{selectedComparison.verdict.reason}</p>
+              <h2>
+                Choose a
+                <br />
+                <strong>comparison.</strong>
+              </h2>
+            </div>
 
-              <div className="verdict-columns">
-                <div className="verdict-col phoneo-col">
-                  <h4>Phoneo Strengths</h4>
-                  <ul>
-                    {selectedComparison.verdict.phoneoStrengths?.map((strength, idx) => (
-                      <li key={idx}>✅ {strength}</li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="compare-heading-right">
+              <p>
+                Select a comparison to explore a complete overview, key
+                differences and feature-by-feature details.
+              </p>
 
-                <div className="verdict-col competitor-col">
-                  <h4>{selectedComparison.productB} Strengths</h4>
-                  <ul>
-                    {selectedComparison.advantages?.[selectedComparison.productB]?.map((advantage, idx) => (
-                      <li key={idx}>✅ {advantage}</li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="compare-result-count">
+                <strong>{filteredComparisons.length}</strong>
+                <span>
+                  {filteredComparisons.length === 1
+                    ? "comparison available"
+                    : "comparisons available"}
+                </span>
               </div>
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="comparison-cta">
-            <h3>Ready to Switch to Phoneo?</h3>
-            <p>Experience the difference. Start your free trial today.</p>
-            <button className="btn btn-primary btn-large">Start Free Trial</button>
-            <p className="cta-note">No credit card required. 7 days free. 100% refund if not satisfied.</p>
-          </div>
-        </div>
-      </div>
+          {filteredComparisons.length > 0 ? (
+            <div className="comparison-articles-grid">
+              {filteredComparisons.map((comparison, index) => (
+                <Link
+                  to={`/compare/${comparison.id}`}
+                  className="comparison-article-card"
+                  key={comparison.id}
+                >
+                  {/* Image */}
+                  <div className="comparison-card-image">
+                    <img
+                      src={comparison.image}
+                      alt={`${comparison.productA} vs ${comparison.productB}`}
+                    />
 
-      {/* FAQ Section */}
-      <section className="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <div className="faq-grid">
-          <div className="faq-item">
-            <h4>Why should I choose Phoneo over Vyapar?</h4>
-            <p>Phoneo is specifically built for mobile shops with IMEI tracking, second-hand phone support, and WhatsApp integration that Vyapar lacks.</p>
-          </div>
-          <div className="faq-item">
-            <h4>Is Phoneo better than Tally?</h4>
-            <p>For mobile shops, yes. Phoneo is designed for your needs. Tally is better for large enterprises needing complex accounting.</p>
-          </div>
-          <div className="faq-item">
-            <h4>Can I switch from other software to Phoneo?</h4>
-            <p>Yes! We help you migrate your data. Contact our support team for assistance.</p>
-          </div>
-          <div className="faq-item">
-            <h4>What if I'm not satisfied with Phoneo?</h4>
-            <p>We offer a 30-day refund policy. No questions asked. Your money back.</p>
+                    <div className="comparison-card-overlay"></div>
+
+                    <span className="comparison-card-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className="comparison-card-category">
+                      {comparison.category}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="comparison-card-body">
+                    <div className="comparison-products">
+                      <span>{comparison.productA}</span>
+
+                      <b>VS</b>
+
+                      <span>{comparison.productB}</span>
+                    </div>
+
+                    <h3>{comparison.title}</h3>
+
+                    <p>
+                      {comparison.brief ||
+                        comparison.subtitle ||
+                        "Explore this detailed software comparison."}
+                    </p>
+
+                    <div className="comparison-card-footer">
+                      <span>Read full comparison</span>
+
+                      <span className="comparison-card-arrow">
+                        ↗
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="comparison-empty">
+              <div className="comparison-empty-icon">⌕</div>
+
+              <h3>No comparison found</h3>
+
+              <p>
+                We couldn't find a comparison matching{" "}
+                <strong>"{search}"</strong>.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setSearch("")}
+              >
+                Show all comparisons
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* =====================================================
+          HOW TO READ
+      ===================================================== */}
+
+      <section className="compare-info-section">
+        <div className="compare-container">
+          <div className="compare-info-box">
+            <div className="compare-info-content">
+              <div className="compare-section-kicker light">
+                <span></span>
+                Make a practical comparison
+              </div>
+
+              <h2>
+                Look beyond
+                <br />
+                <strong>the feature list.</strong>
+              </h2>
+
+              <p>
+                Every comparison looks at the things that matter when running
+                a mobile business — billing, inventory, customers, repairs,
+                reports and everyday workflow.
+              </p>
+            </div>
+
+            <div className="compare-info-points">
+              <div>
+                <span>01</span>
+                <strong>Billing</strong>
+                <p>Understand everyday invoicing and sales workflows.</p>
+              </div>
+
+              <div>
+                <span>02</span>
+                <strong>Inventory</strong>
+                <p>Compare how products and stock can be managed.</p>
+              </div>
+
+              <div>
+                <span>03</span>
+                <strong>Reports</strong>
+                <p>See how each platform approaches business insights.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
