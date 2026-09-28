@@ -50,50 +50,71 @@ const blogArticles = [
   },
 
   {
-    id: "2",
-    slug: "mobile-shop-inventory-management",
-    title: "Mobile Shop Inventory Management: How to Control Your Stock",
-    author: "PhoneHub Team",
-    publishedAt: "2026-09-23",
-    readTime: 6,
-    category: "inventory",
-    featured: true,
-    excerpt:
-      "Discover practical ways to track smartphones, accessories and spare parts without depending on notebooks and spreadsheets.",
-    image:
-      "https://images.unsplash.com/photo-1586528116493-da8b5f1c9c3f?auto=format&fit=crop&w=1200&q=85",
-    content: `
-      <p>Inventory is one of the most important parts of a mobile retail business. A shop may have smartphones, chargers, covers, earphones, cables, batteries and repair parts.</p>
+    
+  id: "2",
+  slug: "mobile-shop-inventory-management",
+  title: "Mobile Shop Inventory Management: How to Control Your Stock",
+  author: "PhoneHub Team",
+  publishedAt: "2026-09-23",
+  readTime: 6,
+  category: "inventory",
+  featured: true,
 
-      <p>Without proper stock management, it becomes difficult to know what is available, what has been sold and what needs to be reordered.</p>
+  excerpt:
+    "Discover practical ways to track smartphones, accessories and spare parts without depending on notebooks and spreadsheets.",
 
-      <h2>What should you track?</h2>
+  image:
+    "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=85",
 
-      <ul>
-        <li>Product name</li>
-        <li>Brand</li>
-        <li>Model</li>
-        <li>IMEI or serial number</li>
-        <li>Purchase price</li>
-        <li>Selling price</li>
-        <li>Available quantity</li>
-        <li>Supplier details</li>
-      </ul>
+  content: `
+    <p>
+      Inventory is one of the most important parts of a mobile retail
+      business. A shop may have smartphones, chargers, covers, earphones,
+      cables, batteries and repair parts.
+    </p>
 
-      <h2>Benefits of digital inventory management</h2>
+    <p>
+      Without proper stock management, it becomes difficult to know what
+      is available, what has been sold and what needs to be reordered.
+    </p>
 
-      <p>A digital inventory system gives shop owners a clearer view of their stock. Instead of manually checking shelves, they can search products and review available quantities from one dashboard.</p>
+    <h2>What should you track?</h2>
 
-      <h3>Low stock alerts</h3>
+    <ul>
+      <li>Product name</li>
+      <li>Brand</li>
+      <li>Model</li>
+      <li>IMEI or serial number</li>
+      <li>Purchase price</li>
+      <li>Selling price</li>
+      <li>Available quantity</li>
+      <li>Supplier details</li>
+    </ul>
 
-      <p>Low-stock notifications can help retailers reorder popular accessories and products before they run out.</p>
+    <h2>Benefits of digital inventory management</h2>
 
-      <h2>Conclusion</h2>
+    <p>
+      A digital inventory system gives shop owners a clearer view of
+      their stock. Instead of manually checking shelves, they can search
+      products and review available quantities from one dashboard.
+    </p>
 
-      <p>Good inventory management improves purchasing decisions, reduces stock-related mistakes and helps mobile shops operate more efficiently.</p>
-    `,
-  },
+    <h3>Low stock alerts</h3>
 
+    <p>
+      Low-stock notifications can help retailers reorder popular
+      accessories and products before they run out.
+    </p>
+
+    <h2>Conclusion</h2>
+
+    <p>
+      Good inventory management improves purchasing decisions, reduces
+      stock-related mistakes and helps mobile shops operate more
+      efficiently.
+    </p>
+  `,
+},
   {
     id: "3",
     slug: "phone-shop-management-software",
@@ -262,41 +283,63 @@ const blogArticles = [
     `,
   },
 
-  {
-    id: "7",
-    slug: "mobile-accessories-inventory",
-    title: "Managing Mobile Accessories Inventory Without the Mess",
-    author: "PhoneHub Team",
-    publishedAt: "2026-09-13",
-    readTime: 5,
-    category: "accessories",
-    featured: false,
-    excerpt:
-      "Learn how to organize chargers, cases, cables, earphones and other accessories with a simple inventory workflow.",
-    image:
-      "https://images.unsplash.com/photo-1609592424707-4e5a2a6d6a89?auto=format&fit=crop&w=1200&q=85",
-    content: `
-      <p>Accessories may be smaller than smartphones, but managing hundreds of different SKUs can become difficult.</p>
+  
+    {
+  id: "7",
+  slug: "mobile-accessories-inventory",
+  title: "Managing Mobile Accessories Inventory Without the Mess",
+  author: "PhoneHub Team",
+  publishedAt: "2026-09-13",
+  readTime: 5,
+  category: "accessories",
+  featured: false,
 
-      <h2>Create clear categories</h2>
+  excerpt:
+    "Learn how to organize chargers, cases, cables, earphones and other accessories with a simple inventory workflow.",
 
-      <p>Group accessories by product type such as cases, chargers, cables, earphones, screen protectors and power banks.</p>
+  image:
+    "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=1200&q=80",
 
-      <h2>Track fast-moving products</h2>
+  content: `
+    <p>
+      Accessories may be smaller than smartphones, but managing hundreds
+      of different SKUs can become difficult.
+    </p>
 
-      <p>Identify which accessories sell most frequently and maintain appropriate stock levels.</p>
+    <h2>Create clear categories</h2>
 
-      <h2>Use product codes</h2>
+    <p>
+      Group accessories by product type such as cases, chargers, cables,
+      earphones, screen protectors and power banks.
+    </p>
 
-      <p>Unique product codes make searching and billing faster, especially when multiple products look similar.</p>
+    <h2>Track fast-moving products</h2>
 
-      <h2>Review stock regularly</h2>
+    <p>
+      Identify which accessories sell most frequently and maintain
+      appropriate stock levels.
+    </p>
 
-      <p>Regular stock checks help identify damaged, missing or slow-moving products.</p>
+    <h2>Use product codes</h2>
 
-      <p>A simple digital inventory workflow can make accessory management much easier.</p>
-    `,
-  },
+    <p>
+      Unique product codes make searching and billing faster, especially
+      when multiple products look similar.
+    </p>
+
+    <h2>Review stock regularly</h2>
+
+    <p>
+      Regular stock checks help identify damaged, missing or slow-moving
+      products.
+    </p>
+
+    <p>
+      A simple digital inventory workflow can make accessory management
+      much easier.
+    </p>
+  `,
+},
 
   {
     id: "8",

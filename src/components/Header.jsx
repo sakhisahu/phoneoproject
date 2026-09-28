@@ -82,7 +82,7 @@ export default function Header() {
 
           <span className="site-logo-text">
             <strong>PhoneHub</strong>
-            <small>by Phoneo</small>
+            
           </span>
         </Link>
 
